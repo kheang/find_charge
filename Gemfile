@@ -38,3 +38,12 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'geocoder'
+
+group :development, :test do
+	gem "dotenv-rails"
+	gem "shoulda"
+	gem "better_errors"
+	gem "binding_of_caller"
+	gem "pry-rails"
+end
