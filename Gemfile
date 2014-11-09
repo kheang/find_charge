@@ -39,8 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'geocoder'
-gem 'gmaps4rails'
-gem 'underscore-rails'
+gem 'httparty', '~> 0.13.3'
 
 group :development, :test do
 	gem "dotenv-rails"
