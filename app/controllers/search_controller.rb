@@ -12,15 +12,17 @@ class SearchController < ApplicationController
   private
 
   def get_locations
-	  @locations = HTTParty.get("http://data.raleighnc.gov/resource/c7id-b4bq.json")
+	  @locations_data = HTTParty.get("http://data.raleighnc.gov/resource/c7id-b4bq.json")
+	  @locations = []
 	  @coordinates = []
 
-	  @locations.each do |location|
-      latitude = location["location_1"]["latitude"]
-	    longitude = location["location_1"]["longitude"]
-		  @coordinates << [latitude,longitude]
-    end
-
+	  @locations_data.each do |location|
+		  name = location["station_name"]
+      latitude = location["location_1"]["latitude"].to_f
+	    longitude = location["location_1"]["longitude"].to_f
+      @locations << {:name => name, :lat => latitude, :lng => longitude}
+		  @coordinates << [latitude, longitude]
+	  end
   end
 
 end

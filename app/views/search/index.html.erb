@@ -6,12 +6,12 @@
       src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>">
 </script>
 
-<%= javascript_tag do %>
+<script>
 
     function initialize() {
 
-        var currentLat = <%= @current_coordinates[0] %>
-        var currentLng = <%= @current_coordinates[1] %>
+        var currentLat = <%= @current_coordinates[0] %>;
+        var currentLng = <%= @current_coordinates[1] %>;
 
         var currentLatLng = new google.maps.LatLng(currentLat,currentLng);
 
@@ -22,19 +22,29 @@
         var map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
 
-        new google.maps.LatLng(currentLat,currentLng);
-            new google.maps.Marker({
-                position: currentLatLng,
-                map: map,
+        var marker = new google.maps.Marker({
+            position: currentLatLng,
+            map: map,
         });
+
+        var coordinates = <%= @coordinates %>;
+
+        for (i = 0; i < coordinates.length; i++) {
+            new google.maps.Marker({
+                position: new google.maps.LatLng(coordinates[i][0], coordinates[i][1]),
+                map: map,
+            });
+        }
+
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 
-<% end %>
+</script>
 
 <div id="map-canvas" style='height: 50%'></div>
 
 <div id="locations">
-    <%= @coordinates %>
+<p>LOCATIONS: <%= @locations %></p>
+<p>COORDINATES: <%= @coordinates %></p>
 </div>
 
