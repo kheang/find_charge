@@ -22,9 +22,11 @@ class SearchController < ApplicationController
       latitude = location["location_1"]["latitude"].to_f
 	    longitude = location["location_1"]["longitude"].to_f
 		  address = location["location_1"]["human_address"]
-      @locations << {"name" => name, "lat" => latitude, "lng"  => longitude, "address" => address}
+      street_address = location["street_address"]
+      distance = Haversine.distance(35.9929818, -78.9044936, latitude, longitude)
+      miles = distance.to_miles.round(2)
+      @locations << {"name" => name, "lat" => latitude, "lng"  => longitude, "address" => address, "miles" => miles, "street" => street_address}
 		  @coordinates << [latitude, longitude]
 	  end
   end
-
 end
