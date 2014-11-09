@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141109162219) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "searches", force: true do |t|
     t.string   "address"
     t.float    "latitude"
@@ -20,8 +23,5 @@ ActiveRecord::Schema.define(version: 20141109162219) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
 
 end
