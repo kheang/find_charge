@@ -1,0 +1,10 @@
+<div id="locations">
+  <ul class="location_result">
+    <% @locations.each do |location| %>
+      <% latitude = location["location_1"]["latitude"] %>
+      <% longitude = location["location_1"]["longitude"] %>
+      <% coordinates = [latitude + ", " + longitude] %>
+      <%= coordinates %>
+    <% end %>
+  </ul>
+</div>
