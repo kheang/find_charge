@@ -9,9 +9,9 @@
           <div class="panel">
             <ul class="panel_info">
                 <li><h1><%= location["name"] %></h1></li>
-                <% @haversine = location["lat"], location["lng"] %>
-                <li>Distance: <% distance = Haversine.distance(@current_coordinates, @haversine)%><%= distance.to_miles.round(2) %> miles</li>
-								<li>Nearby while you wait: <%= link_to location["yelp"]["name"], location["yelp"]["url"] %> <%= image_tag location["yelp"]["rating_image"] %> | <%= location["yelp"]["distance"]%> mi. from station</li>
+              <li>Distance: <%= location["distance"] %> miles</li>
+              <li>Address: <%= location["street"] %></li>
+              <li>Nearby while you wait: <%= link_to location["yelp"]["name"], location["yelp"]["url"] %> <%= image_tag location["yelp"]["rating_image"] %> | <%= location["yelp"]["distance"]%> mi. from station</li>
             </ul>
           </div>
     <% end %>
