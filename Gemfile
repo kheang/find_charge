@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'soda-ruby'
 gem 'httparty'
+gem 'haversine'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record

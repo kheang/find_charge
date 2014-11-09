@@ -1,4 +1,5 @@
 require 'geocoder'
+require 'haversine'
 
 class SearchController < ApplicationController
 
@@ -21,6 +22,8 @@ class SearchController < ApplicationController
       latitude = location["location_1"]["latitude"].to_f
 	    longitude = location["location_1"]["longitude"].to_f
 		  address = location["location_1"]["human_address"]
+      street = location
+      haversine = location["location_1"]["latitude"].to_f, location["location_1"]["longitude"].to_f
       @locations << {"name" => name, "lat" => latitude, "lng"  => longitude, "address" => address}
 		  @coordinates << [latitude, longitude]
 	  end
