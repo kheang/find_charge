@@ -22,6 +22,8 @@
         var map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
 
+        var charger = 'assets/battery-charge-icon.png';
+
         var marker = new google.maps.Marker({
             position: currentLatLng,
             map: map,
@@ -33,6 +35,7 @@
             new google.maps.Marker({
                 position: new google.maps.LatLng(coordinates[i][0], coordinates[i][1]),
                 map: map,
+                icon: charger
             });
         }
 
@@ -44,15 +47,14 @@
 <div id="map-canvas" style='height: 50%'></div>
 
 <div id="locations">
-<p>LOCATIONS:</p>
+    <p>LOCATIONS:</p>
 
-<% @locations.each do |location| %>
-    <p>
-      <%= location[:name] %><br>
-      <%= location %>
-    </p>
-<% end %>
-
-<p>COORDINATES: <%= @coordinates %></p>
+    <% @locations.each do |location| %>
+        <p>
+          <%= location["name"] %><br>
+          <%= location %>
+        </p>
+    <% end %>
 </div>
 
+"Battery charge icon" made available under <%= link_to 'CC Attribution 4.0', 'http://creativecommons.org/licenses/by/4.0/' %> by <%= link_to 'FatCow', 'http://www.fatcow.com/free-icons' %>
