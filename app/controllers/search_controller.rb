@@ -1,5 +1,7 @@
 require 'geocoder'
 require 'yelp'
+require 'haversine'
+
 
 class SearchController < ApplicationController
 

@@ -9,7 +9,8 @@
           <div class="panel">
             <ul class="panel_info">
                 <li><h1><%= location["name"] %></h1></li>
-                <li>Distance: [##] mi.</li>
+                <% @haversine = location["lat"], location["lng"] %>
+                <li>Distance: <% distance = Haversine.distance(@current_coordinates, @haversine)%><%= distance.to_miles.round(2) %> miles</li>
             </ul>
             <p><%= location %></p>
           </div>
@@ -17,4 +18,3 @@
 
   <h6>Licenses: "Battery charge icon" made available under <%= link_to 'CC Attribution 4.0', 'http://creativecommons.org/licenses/by/4.0/' %> by <%= link_to 'FatCow', 'http://www.fatcow.com/free-icons' %></h6>
 </div>
-
