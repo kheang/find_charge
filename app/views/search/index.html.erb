@@ -1,12 +1,10 @@
 <%= render 'map' %>
 
-
-
 <div class="locations">
-    <h3>Nearest Locations</h3>
-
-	<%= @closest_brewery.inspect %>
-
+	<div class="panel">
+    <h1>Closest Electric Vehicle Charging Stations</h1>
+	  <p>Nearby recommendations powered by Yelp <%= image_tag 'http://s3-media1.fl.yelpcdn.com/assets/2/www/img/1589098a542f/developers/Powered_By_Yelp_White.png' %></p>
+	</div>
     <% @locations.each do |location| %>
           <div class="panel">
             <ul class="panel_info">
