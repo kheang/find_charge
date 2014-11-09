@@ -10,7 +10,7 @@
             <ul class="panel_info">
                 <li><h1><%= location["name"] %></h1></li>
               <li>Distance: <%= location["distance"] %> miles</li>
-              <li>Address: <%= location["street"] %></li>
+              <li>Address: <%= location["address"].values.join(", ") %></li>
               <li>Nearby while you wait: <%= link_to location["yelp"]["name"], location["yelp"]["url"] %> <%= image_tag location["yelp"]["rating_image"] %> | <%= location["yelp"]["distance"]%> mi. from station</li>
             </ul>
           </div>

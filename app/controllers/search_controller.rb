@@ -24,7 +24,7 @@ class SearchController < ApplicationController
       name = location["station_name"]
       latitude = location["location_1"]["latitude"].to_f
       longitude = location["location_1"]["longitude"].to_f
-      address = location["location_1"]["human_address"]
+      address = eval((location["location_1"]["human_address"]).gsub(":","=>"))
       street_address = location["street_address"]
       distance = Haversine.distance(35.9929818, -78.9044936, latitude, longitude)
       miles = distance.to_miles.round(2)
