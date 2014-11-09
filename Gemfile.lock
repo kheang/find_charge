@@ -58,6 +58,7 @@ GEM
       sass (>= 3.2.0)
     geocoder (1.1.9)
     hashie (3.3.1)
+    haversine (0.3.0)
     hike (1.2.3)
     httparty (0.13.3)
       json (~> 1.8)
@@ -158,6 +159,7 @@ DEPENDENCIES
   dotenv-rails
   foundation-rails
   geocoder
+  haversine
   httparty
   jbuilder (~> 2.0)
   jquery-rails
