@@ -10,8 +10,8 @@
 
     function initialize() {
 
-        var currentLat = <%= @coordinates[0]["lat"] %>
-        var currentLng = <%= @coordinates[0]["lng"] %>
+        var currentLat = <%= @current_coordinates[0] %>
+        var currentLng = <%= @current_coordinates[1] %>
 
         var currentLatLng = new google.maps.LatLng(currentLat,currentLng);
 
@@ -32,16 +32,9 @@
 
 <% end %>
 
-<div id="map-canvas"></div>
+<div id="map-canvas" style='height: 50%'></div>
 
 <div id="locations">
-  <ul class="location_result">
-    <% @locations.each do |location| %>
-      <% latitude = location["location_1"]["latitude"] %>
-      <% longitude = location["location_1"]["longitude"] %>
-      <% coordinates = [latitude + ", " + longitude] %>
-      <%= coordinates %>
-    <% end %>
-  </ul>
+    <%= @coordinates %>
 </div>
 
