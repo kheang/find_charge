@@ -34,7 +34,7 @@ class SearchController < ApplicationController
 		  address = location["location_1"]["human_address"]
       yelp_result = yelp_client.search_by_coordinates( { latitude: latitude,
                                                     longitude: longitude },
-                                                  { term: 'bar, brewery', limit: 1 })
+                                                  { term: 'bar', limit: 1 })
       yelp_hash = parse_yelp_result(yelp_result)
 
       @locations << {"name" => name, "lat" => latitude, "lng"  => longitude, "address" => address, "yelp" => yelp_hash}
