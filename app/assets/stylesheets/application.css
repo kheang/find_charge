@@ -12,9 +12,19 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
 
 body {
     margin: 0;
     background: #7DB889;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h6 {
+    font-size: 12px;
 }

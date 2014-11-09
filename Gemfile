@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'geocoder'
+gem 'foundation-rails'
 
 group :development, :test do
 	gem "dotenv-rails"

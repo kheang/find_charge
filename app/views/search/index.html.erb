@@ -1,60 +1,20 @@
+<%= render 'map' %>
 
-<style type="text/css">
-  html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
-</style>
-<script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>">
-</script>
 
-<script>
 
-    function initialize() {
-
-        var currentLat = <%= @current_coordinates[0] %>;
-        var currentLng = <%= @current_coordinates[1] %>;
-
-        var currentLatLng = new google.maps.LatLng(currentLat,currentLng);
-
-        var mapOptions = {
-            center: { lat: currentLat, lng: currentLng},
-            zoom: 12
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
-
-        var charger = 'assets/battery-charge-icon.png';
-
-        var marker = new google.maps.Marker({
-            position: currentLatLng,
-            map: map,
-        });
-
-        var coordinates = <%= @coordinates %>;
-
-        for (i = 0; i < coordinates.length; i++) {
-            new google.maps.Marker({
-                position: new google.maps.LatLng(coordinates[i][0], coordinates[i][1]),
-                map: map,
-                icon: charger
-            });
-        }
-
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-</script>
-
-<div id="map-canvas" style='height: 50%'></div>
-
-<div id="locations">
-    <p>LOCATIONS:</p>
+<div class="locations">
+    <h3>Nearest Locations</h3>
 
     <% @locations.each do |location| %>
-        <p>
-          <%= location["name"] %><br>
-          <%= location %>
-        </p>
+          <div class="panel">
+            <ul class="panel_info">
+                <li><h1><%= location["name"] %></h1></li>
+                <li>Distance: [##] mi.</li>
+            </ul>
+            <p><%= location %></p>
+          </div>
     <% end %>
+
+  <h6>Licenses: "Battery charge icon" made available under <%= link_to 'CC Attribution 4.0', 'http://creativecommons.org/licenses/by/4.0/' %> by <%= link_to 'FatCow', 'http://www.fatcow.com/free-icons' %></h6>
 </div>
 
-"Battery charge icon" made available under <%= link_to 'CC Attribution 4.0', 'http://creativecommons.org/licenses/by/4.0/' %> by <%= link_to 'FatCow', 'http://www.fatcow.com/free-icons' %>

@@ -1,3 +1,18 @@
 // Place all the styles related to the search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.locations {
+  padding: 5px;
+}
+
+ul.panel_info {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  h1 {
+    font-size: 20px;
+    weight: 600;
+  }
+}
