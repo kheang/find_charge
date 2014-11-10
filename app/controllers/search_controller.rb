@@ -62,7 +62,12 @@ class SearchController < ApplicationController
   end
 
   def set_current_location
-    address = request.remote_ip
+    if request.remote_up == "127.0.0.1"
+      address = "318 Blackwell St, Durham, NC 27701"
+    else
+			address = request.remote_up
+		end
+
     @current_coordinates = Geocoder.coordinates(address)
   end
 
