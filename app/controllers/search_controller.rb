@@ -69,6 +69,7 @@ class SearchController < ApplicationController
 		end
 
     @current_coordinates = Geocoder.coordinates(address)
+		@current_coordinates ||= [35.993420,-78.904196]
   end
 
 end
