@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+ruby '2.1.3'
+gem 'rails_12factor'
+gem 'unicorn'
+
 gem 'soda-ruby'
 gem 'httparty'
 gem 'haversine'
