@@ -1,1 +1,6 @@
-Geocoder::Configuration.timeout = 5
+Geocoder.configure(
+
+	# geocoding service request timeout, in seconds (default 3):
+	:timeout => 3,
+
+)
