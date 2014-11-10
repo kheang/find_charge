@@ -26,10 +26,10 @@ class SearchController < ApplicationController
       longitude = location["location_1"]["longitude"].to_f
       address = eval((location["location_1"]["human_address"]).gsub(":","=>"))
       street_address = location["street_address"]
-      distance = Haversine.distance(35.9929818, -78.9044936, latitude, longitude)
+      distance = Haversine.distance(@current_coordinates[0], @current_coordinates[1], latitude, longitude)
       miles = distance.to_miles.round(2)
 
-      locations << {"name" => name, "lat" => latitude, "lng"  => longitude, "address" => address, "distance" => miles, "street" => street_address}
+      locations << {:name => name, :lat => latitude, :lng  => longitude, :address => address, :distance => miles, :street => street_address}
 
       @coordinates << [latitude, longitude]
     end
@@ -39,7 +39,7 @@ class SearchController < ApplicationController
 
   def parse_yelp_result(yelp_result)
     business = yelp_result.businesses[0]
-    { "name" => business.name, "address" => business.location.display_address, "rating" => business.rating, "rating_image" => business.rating_img_url_small, "url" => business.url, "distance" => meters_to_miles(business.distance) }
+    { :name => business.name, :address => business.location.display_address, :rating => business.rating, :rating_image => business.rating_img_url_small, :url => business.url, :distance => meters_to_miles(business.distance) }
   end
 
   def add_yelp_results(locations)
@@ -50,12 +50,12 @@ class SearchController < ApplicationController
                                    })
 
     locations.each do |location|
-      yelp_result = yelp_client.search_by_coordinates( { latitude: location["lat"],
-                                                         longitude: location["lng"] },
+      yelp_result = yelp_client.search_by_coordinates( { latitude: location[:lat],
+                                                         longitude: location[:lng] },
                                                        { term: 'brewery', limit: 1 })
       yelp_hash = parse_yelp_result(yelp_result)
 
-      location["yelp"] = yelp_hash
+      location[:yelp] = yelp_hash
     end
   end
 
