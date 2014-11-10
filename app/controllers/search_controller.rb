@@ -9,6 +9,7 @@ class SearchController < ApplicationController
   def index
     open_data = HTTParty.get("http://data.raleighnc.gov/resource/c7id-b4bq.json")
     @locations = filter_open_data(open_data)
+    @coordinates = @locations.map{|location| [location[:lat],location[:lng]]}
 
     @locations = @locations.sort_by { |location| location["distance"] }.take(10)
     @locations = add_yelp_results(@locations)
@@ -18,20 +19,17 @@ class SearchController < ApplicationController
 
   def filter_open_data(data)
     locations = []
-    @coordinates = []
 
     data.each do |location|
-      name = location["station_name"]
-      latitude = location["location_1"]["latitude"].to_f
-      longitude = location["location_1"]["longitude"].to_f
-      address = eval((location["location_1"]["human_address"]).gsub(":","=>"))
-      street_address = location["street_address"]
-      distance = Haversine.distance(@current_coordinates[0], @current_coordinates[1], latitude, longitude)
-      miles = distance.to_miles.round(2)
+      location_hash = {}
+      location_hash[:id] = location["id"]
+      location_hash[:name] = location["station_name"]
+      location_hash[:lat] = location["location_1"]["latitude"].to_f
+      location_hash[:lng] = location["location_1"]["longitude"].to_f
+      location_hash[:address] = eval((location["location_1"]["human_address"]).gsub(":","=>"))
+      location_hash[:distance] = Haversine.distance(@current_coordinates[0], @current_coordinates[1], location_hash[:lat], location_hash[:lng]).to_miles.round(2)
 
-      locations << {:name => name, :lat => latitude, :lng  => longitude, :address => address, :distance => miles, :street => street_address}
-
-      @coordinates << [latitude, longitude]
+      locations << location_hash
     end
 
     locations
