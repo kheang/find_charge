@@ -65,7 +65,7 @@ class SearchController < ApplicationController
     if request.remote_ip == "127.0.0.1"
       address = "318 Blackwell St, Durham, NC 27701"
     else
-			address = request.remote_ip
+			address = request.location
 		end
 
     @current_coordinates = Geocoder.coordinates(address)
