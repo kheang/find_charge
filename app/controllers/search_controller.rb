@@ -11,7 +11,7 @@ class SearchController < ApplicationController
     @locations = filter_open_data(open_data)
     @coordinates = @locations.map{|location| [location[:lat],location[:lng]]}
 
-    @locations = @locations.sort_by { |location| location["distance"] }.take(10)
+    @locations = @locations.sort_by { |location| location[:distance] }.take(10)
     @locations = add_yelp_results(@locations)
   end
 
